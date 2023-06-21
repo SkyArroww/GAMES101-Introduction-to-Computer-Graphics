@@ -1,0 +1,3 @@
+/home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw4/build/CMakeFiles/BezierCurve.dir
+/home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw4/build/CMakeFiles/edit_cache.dir
+/home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw4/build/CMakeFiles/rebuild_cache.dir
