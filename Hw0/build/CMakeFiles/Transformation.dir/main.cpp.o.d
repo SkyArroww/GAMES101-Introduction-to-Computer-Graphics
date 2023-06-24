@@ -1,5 +1,5 @@
 CMakeFiles/Transformation.dir/main.cpp.o: \
- /home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw0/main.cpp \
+ /home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw0/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw0/EIGEN3_INCLUDE_DIR
+CXX_INCLUDES = -I/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw0/EIGEN3_INCLUDE_DIR
 
 CXX_FLAGS = 
 

@@ -40,10 +40,13 @@ int main(){
     std::cout << "Example of output \n";
     std::cout << i << std::endl;
     // matrix add i + j
+    std::cout << i + j << std::endl;
     // matrix scalar multiply i * 2.0
+    std::cout << i * 2.0 << std::endl;
     // matrix multiply i * j
+    std::cout << i * j << std::endl;
     // matrix multiply vector i * v
-
+    std::cout << i * v << std::endl;
 
     /* 
     * PA 0
@@ -51,5 +54,12 @@ int main(){
     // TO DO: Define point P
     // TO DO: Define rotation matrix M
     // TO DO: M * P
+    Eigen::Vector3f P(2.0f, 1.0f, 1.0f);
+    Eigen::Matrix3f M;
+    double theta = 45. / 180. * std::acos(-1);
+    M << std::cos(theta), -std::sin(theta), 1,
+         std::sin(theta), std::cos(theta) , 2,
+         0              , 0               , 1;
+    std::cout<< M * P << std::endl;
     return 0;
 }

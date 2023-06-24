@@ -1,4 +1,4 @@
-# Install script for directory: /home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw0
+# Install script for directory: /home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw0
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw0/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw0/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
