@@ -40,9 +40,22 @@ auto to_vec4(const Eigen::Vector3f& v3, float w = 1.0f)
 }
 
 
-static bool insideTriangle(int x, int y, const Vector3f* _v)
+static bool insideTriangle(float x, float y, const Vector3f* _v)
 {   
     // TODO : Implement this function to check if the point (x, y) is inside the triangle represented by _v[0], _v[1], _v[2]
+    Eigen::Vector3f c(x, y, 1);
+    Eigen::Vector3f v0, v1, v2, c0, c1, c2;
+    v0 = _v[1] - _v[0];c0 = c - _v[0];
+    v1 = _v[2] - _v[1];c1 = c - _v[1];
+    v2 = _v[0] - _v[2];c2 = c - _v[2];
+    Eigen::Matrix<float, 3, 1> f1 = v0.cross(c0), f2 = v1.cross(c1), f3 = v2.cross(c2);
+    
+    if((f1[2] >= 0 && f2[2] >= 0 && f3[2] >= 0) || (f1[2] <= 0 && f2[2] <= 0 && f3[2] <= 0 )){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 static std::tuple<float, float, float> computeBarycentric2D(float x, float y, const Vector3f* v)
@@ -105,10 +118,74 @@ void rst::rasterizer::draw(pos_buf_id pos_buffer, ind_buf_id ind_buffer, col_buf
 //Screen space rasterization
 void rst::rasterizer::rasterize_triangle(const Triangle& t) {
     auto v = t.toVector4();
-    
+    Eigen::Vector3f _v[3];
     // TODO : Find out the bounding box of current triangle.
     // iterate through the pixel and find if the current pixel is inside the triangle
+    int ind = 0;
+    int ll = 1e8, rr = -1e8, tt = -1e8, bb = 1e8;
+    for (auto& vec : v) {
+            ll = std::min(ll, int(vec.x()));
+            rr = std::max(rr, int(vec.x()));
+            bb = std::min(bb, int(vec.y()));
+            tt = std::max(tt, int(vec.y()));
+            std::cout << vec.x() << ' ' << vec.y() << std::endl;
+            Eigen::Vector3f vv(vec.x(), vec.y(), 1.0f);
+            _v[ind] = vv;
+            ind++;
+        }
+    std::cout << ll << ' ' << rr << ' ' << bb << ' ' << tt << std::endl;
+    bool SMAA = true;
+    for(int i = ll;i <= rr; i++){
+        for(int j = bb;j <= tt; j++){
+            // std::cout << i << ' ' << j << std::endl;
+                if((!SMAA) && insideTriangle(i, j, _v)){
+                    Eigen::Vector3f point(i, j, 1);
+                    auto ind = (height - 1 - point.y()) * width + point.x();
+                    // If so, use the following code to get the interpolated z value.
+                    auto[alpha, beta, gamma] = computeBarycentric2D(i, j, t.v);
+                    float w_reciprocal = 1.0/(alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+                    float z_interpolated = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+                    z_interpolated *= w_reciprocal;
+                    
+                    // std::cout << ind << ' ';
+                    if(depth_buf[ind] > z_interpolated){
+                        depth_buf[ind] = z_interpolated;
+                        set_pixel(point, t.getColor());
+                    }
+                    // puts("OK");
 
+                }
+                else if(SMAA){
+                    int cnt = 0;
+                    if(insideTriangle(i + .33, j + .33, _v)) ++cnt;
+                    if(insideTriangle(i + .25, j + .67, _v)) ++cnt;
+                    if(insideTriangle(i + .67, j + .33, _v)) ++cnt;
+                    if(insideTriangle(i + .67, j + .67, _v)) ++cnt;
+                    if(cnt){
+                        Eigen::Vector3f point(i, j, 1);
+                        auto ind = (height - 1 - point.y()) * width + point.x();
+                        // If so, use the following code to get the interpolated z value.
+                        auto[alpha, beta, gamma] = computeBarycentric2D(i, j, t.v);
+                        float w_reciprocal = 1.0/(alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+                        float z_interpolated = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+                        z_interpolated *= w_reciprocal;
+                        
+                        // std::cout << cnt << std::endl;
+                        if(depth_buf[ind] > z_interpolated){
+                            depth_buf[ind] = z_interpolated;
+                            // if(cnt != 4)
+                            //     std::cout << cnt << std::endl;
+                            set_pixel(point, t.getColor() * cnt / 4.);
+                            // if(cnt != 4){
+                            //     Eigen::Vector3f white(254, 254, 254);
+                            //     set_pixel(point, white);
+                            //     }
+                        }
+                    }
+                }
+        }
+    }
+    // puts("fin");
     // If so, use the following code to get the interpolated z value.
     //auto[alpha, beta, gamma] = computeBarycentric2D(x, y, t.v);
     //float w_reciprocal = 1.0/(alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());

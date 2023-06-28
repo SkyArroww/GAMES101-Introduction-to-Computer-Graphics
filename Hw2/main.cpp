@@ -31,8 +31,34 @@ Eigen::Matrix4f get_model_matrix(float rotation_angle)
 Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio, float zNear, float zFar)
 {
     // TODO: Copy-paste your implementation from the previous assignment.
-    Eigen::Matrix4f projection;
+    Eigen::Matrix4f projection = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f M_persp2ortho = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f M_ortho1 = Eigen::Matrix4f::Identity(), M_ortho2 = Eigen::Matrix4f::Identity();
+    // TODO: Implement this function
+    // Create the projection matrix for the given parameters.
+    // Then return it.
+    M_persp2ortho << zNear, 0, 0, 0,
+                  0, zNear, 0, 0,
+                  0, 0, zNear + zFar, -zNear * zFar,
+                  0, 0, 1, 0;
+    
+    float t = std::abs(zNear) * std::tan((eye_fov * .5) / 180. * MY_PI);
+    float b = -t;
+    float r = t * aspect_ratio;
+    float l = -r;
 
+    M_ortho1 << 2./(r - l), 0, 0, 0,
+                0, 2./(t - b), 0 ,0,
+                0, 0, 2./(zNear - zFar), 0,
+                0, 0, 0, 1;
+    M_ortho2 << 1, 0, 0, -(r + l) * .5,
+                0, 1, 0, -(t + b) * .5,
+                0, 0, 1, -(zNear + zFar) * .5,
+                0, 0, 0, 1;
+    // std::cout<<M_ortho1<<std::endl;
+    // std::cout<<M_ortho2<<std::endl;
+
+    projection = M_ortho1 * M_ortho2 * M_persp2ortho;
     return projection;
 }
 
