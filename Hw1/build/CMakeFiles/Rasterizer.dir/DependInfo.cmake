@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw1/Triangle.cpp" "CMakeFiles/Rasterizer.dir/Triangle.cpp.o" "gcc" "CMakeFiles/Rasterizer.dir/Triangle.cpp.o.d"
-  "/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw1/main.cpp" "CMakeFiles/Rasterizer.dir/main.cpp.o" "gcc" "CMakeFiles/Rasterizer.dir/main.cpp.o.d"
-  "/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw1/rasterizer.cpp" "CMakeFiles/Rasterizer.dir/rasterizer.cpp.o" "gcc" "CMakeFiles/Rasterizer.dir/rasterizer.cpp.o.d"
+  "/home/skyarrow/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw1/Triangle.cpp" "CMakeFiles/Rasterizer.dir/Triangle.cpp.o" "gcc" "CMakeFiles/Rasterizer.dir/Triangle.cpp.o.d"
+  "/home/skyarrow/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw1/main.cpp" "CMakeFiles/Rasterizer.dir/main.cpp.o" "gcc" "CMakeFiles/Rasterizer.dir/main.cpp.o.d"
+  "/home/skyarrow/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw1/rasterizer.cpp" "CMakeFiles/Rasterizer.dir/rasterizer.cpp.o" "gcc" "CMakeFiles/Rasterizer.dir/rasterizer.cpp.o.d"
   )
 
 # Targets to which this target links.

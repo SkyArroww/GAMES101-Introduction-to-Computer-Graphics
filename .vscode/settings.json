@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "dense": "cpp"
-    }
+        "dense": "cpp",
+        "eigen": "cpp"
+    },
+    "cmake.configureOnOpen": true
 }

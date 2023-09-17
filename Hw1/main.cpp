@@ -2,7 +2,7 @@
 #include "rasterizer.hpp"
 #include <eigen3/Eigen/Eigen>
 #include <iostream>
-#include </usr/local/include/opencv4/opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 
 constexpr double MY_PI = 3.1415926;
 
