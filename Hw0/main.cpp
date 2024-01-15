@@ -48,18 +48,21 @@ int main(){
     // matrix multiply vector i * v
     std::cout << i * v << std::endl;
 
+    
     /* 
     * PA 0
     */
     // TO DO: Define point P
     // TO DO: Define rotation matrix M
     // TO DO: M * P
-    Eigen::Vector3f P(2.0f, 1.0f, 1.0f);
+    Eigen::Vector3f P(2.0f, 1.0f, 1.0f);    //点的齐次坐标表示
     Eigen::Matrix3f M;
-    double theta = 45. / 180. * std::acos(-1);
+    double theta = 45. / 180. * std::acos(-1); 
+
+    std::cout << "Example of transformation of a point \n";
     M << std::cos(theta), -std::sin(theta), 1,
          std::sin(theta), std::cos(theta) , 2,
-         0              , 0               , 1;
+         0              , 0               , 1;  //先旋转45度，再平移(1,2)
     std::cout<< M * P << std::endl;
     return 0;
 }

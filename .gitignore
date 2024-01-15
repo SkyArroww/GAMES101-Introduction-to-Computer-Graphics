@@ -45,6 +45,7 @@ __pycache__
 
 # vscode files
 /.vscode
+.vscode/
 /.VSCodeCounter
 
 # vim 文件
