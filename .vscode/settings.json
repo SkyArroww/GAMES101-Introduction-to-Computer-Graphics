@@ -4,5 +4,15 @@
         "dense": "cpp",
         "eigen": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "cmake.configureOnOpen": true,
+    "editor.formatOnSave": true,
+    // clang-format 扩展的配置
+    "clang-format.style": "file",
+    "clang-format.assumeFilename": "/home/user/.clang-format",
+    "clang-format.executable": "/usr/bin/clang-format",
+    "clang-format.fallbackStyle": "Microsoft",
+    "editor.defaultFormatter": "xaver.clang-format",
+    "[cpp]": {
+        "editor.defaultFormatter": "xaver.clang-format"
+    }
 }
