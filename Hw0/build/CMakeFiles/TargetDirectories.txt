@@ -1,3 +1,0 @@
-/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw0/build/CMakeFiles/Transformation.dir
-/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw0/build/CMakeFiles/edit_cache.dir
-/home/skyarrow/Desktop/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw0/build/CMakeFiles/rebuild_cache.dir

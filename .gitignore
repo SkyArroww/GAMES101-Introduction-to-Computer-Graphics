@@ -35,6 +35,9 @@
 *build/
 /log
 /install
+*.make
+*.cmake
+*.bin
 
 # cache files
 *.cache
