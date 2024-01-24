@@ -48,6 +48,8 @@ static bool insideTriangle(float x, float y, const Vector3f* _v)
     v0 = _v[1] - _v[0];c0 = c - _v[0];
     v1 = _v[2] - _v[1];c1 = c - _v[1];
     v2 = _v[0] - _v[2];c2 = c - _v[2];
+
+    //若c在三角形内，c到三角形三个顶点的向量与三角形三条边的叉积方向相同
     Eigen::Matrix<float, 3, 1> f1 = v0.cross(c0), f2 = v1.cross(c1), f3 = v2.cross(c2);
     
     if((f1[2] >= 0 && f2[2] >= 0 && f3[2] >= 0) || (f1[2] <= 0 && f2[2] <= 0 && f3[2] <= 0 )){
@@ -117,8 +119,8 @@ void rst::rasterizer::draw(pos_buf_id pos_buffer, ind_buf_id ind_buffer, col_buf
 
 //Screen space rasterization
 void rst::rasterizer::rasterize_triangle(const Triangle& t) {
-    auto v = t.toVector4();
-    Eigen::Vector3f _v[3];
+    auto v = t.toVector4();  //返回三角形三个点
+    Eigen::Vector3f _v[3];   //存储三角形三个点坐标 x, y, z
     // TODO : Find out the bounding box of current triangle.
     // iterate through the pixel and find if the current pixel is inside the triangle
     int ind = 0;
@@ -128,17 +130,19 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t) {
             rr = std::max(rr, int(vec.x()));
             bb = std::min(bb, int(vec.y()));
             tt = std::max(tt, int(vec.y()));
-            std::cout << vec.x() << ' ' << vec.y() << std::endl;
+            // std::cout << vec.x() << ' ' << vec.y() << std::endl;
             Eigen::Vector3f vv(vec.x(), vec.y(), 1.0f);
             _v[ind] = vv;
             ind++;
         }
-    std::cout << ll << ' ' << rr << ' ' << bb << ' ' << tt << std::endl;
+    std::cout << ll << ' ' << rr << ' ' << bb << ' ' << tt << std::endl; // Bounding Box
+    
+    
     bool SMAA = true;
     for(int i = ll;i <= rr; i++){
         for(int j = bb;j <= tt; j++){
             // std::cout << i << ' ' << j << std::endl;
-                if((!SMAA) && insideTriangle(i, j, _v)){
+                if((!SMAA) && insideTriangle(i, j, _v)){ //如果i,j在三角形内
                     Eigen::Vector3f point(i, j, 1);
                     auto ind = (height - 1 - point.y()) * width + point.x();
                     // If so, use the following code to get the interpolated z value.
