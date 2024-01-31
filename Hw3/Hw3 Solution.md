@@ -11,8 +11,11 @@
 7. [Bonus]双线性纹理插值:使用双线性插值进行纹理采样,在Texture
    类中实现一个新方法Vector3f getColorBilinear(float u, float v)并通过fragment shader调用它。为了使双线性插值的效果更加明显，你应该考虑选择更小的纹理图。请同时提交纹理插值与双线性纹理插值的结果，并进行比较。
 
-
 ### Solution
 
 1. 计算重心坐标的$\alpha,\beta,\gamma$：
-2.
+   ![img](重心坐标.jpeg)
+2. 用重心坐标计算法向量、颜色、纹理颜色的插值。
+3. Blinn-Phong Shading：分别按照公式计算出Ambient, Diffuse和Specular
+4. Texture：将$k_d$改为纹理
+5. Bump-mapping 和 Displacemen：根据提示完成
