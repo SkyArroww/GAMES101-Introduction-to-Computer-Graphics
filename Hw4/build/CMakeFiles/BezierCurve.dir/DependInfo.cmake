@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/skyarrow/Desktop/Workspace/ComputerGraphics/Hw4/main.cpp" "CMakeFiles/BezierCurve.dir/main.cpp.o" "gcc" "CMakeFiles/BezierCurve.dir/main.cpp.o.d"
+  "/home/skyarrow/Workspace/GAMES101-Introduction-to-Computer-Graphics/Hw4/main.cpp" "CMakeFiles/BezierCurve.dir/main.cpp.o" "gcc" "CMakeFiles/BezierCurve.dir/main.cpp.o.d"
   )
 
 # Targets to which this target links.
